@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Pytest
+.pytest_cache/
+/test-results/
+/playwright-report/
+
+# VS Code
+.vscode/
+
+# Virtual Environment
+env/
+venv/
+.venv/
+
+# Environment variables
+.env
