@@ -65,3 +65,5 @@ def test_order_confirmation(page):
     confirmation = OrderConfirmation(page)
     confirmation.finish_checkout()
     expect(page.get_by_text("Thank you for your order!")).to_be_visible()
+
+
