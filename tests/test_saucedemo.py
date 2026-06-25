@@ -23,7 +23,7 @@ def test_add_product_to_cart(page):
     login.goto_website()
     login.login("standard_user", "secret_sauce")
     product = ProductPage(page)
-    product.add_Inventory()
+    product.add_inventory()
     expect(page.locator(".shopping_cart_badge")).to_have_text("1")
 
 def test_carticon_to_checkout(page):
@@ -31,7 +31,7 @@ def test_carticon_to_checkout(page):
     login.goto_website()
     login.login("standard_user", "secret_sauce")
     product = ProductPage(page)
-    product.add_Inventory()
+    product.add_inventory
     cart = CartPage(page)
     cart.open_cart()
     expect(page).to_have_url("https://www.saucedemo.com/cart.html")
@@ -42,7 +42,7 @@ def test_checkout(page):
     login.goto_website()
     login.login("standard_user", "secret_sauce")
     product = ProductPage(page)
-    product.add_Inventory()
+    product.add_inventory
     cart = CartPage(page)
     cart.open_cart()
     cart.proceed_to_checkout()
@@ -55,7 +55,7 @@ def test_order_confirmation(page):
     login.goto_website()
     login.login("standard_user", "secret_sauce")
     product = ProductPage(page)
-    product.add_Inventory()
+    product.add_inventory
     cart = CartPage(page)
     cart.open_cart()
     cart.proceed_to_checkout()
