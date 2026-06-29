@@ -12,11 +12,8 @@ def invalid_credentials(page):
 
     return page
 
-
-
-
 @pytest.fixture
-def logged_in(page):
+def valid_credentails(page):
 
     loginObj = LoginPage(page)
     loginObj.goto_website()
