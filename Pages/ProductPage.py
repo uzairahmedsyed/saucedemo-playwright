@@ -1,10 +1,13 @@
+from playwright.sync_api import Page
 
 class ProductPage:
 
-    def __init__(self, browserTabProductPage):
+    def __init__(self, page:Page):
 
-        self.browser_ProductPage = browserTabProductPage
+        self.page = page
     
-    def add_inventory(self):
 
-        self.browser_ProductPage.locator("#add-to-cart-sauce-labs-backpack").click()
+    def add_inventory(self, product_name):
+
+        product = f"#add-to-cart-{product_name}"
+        self.page.locator(product).click()

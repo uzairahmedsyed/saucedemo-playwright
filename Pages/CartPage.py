@@ -1,13 +1,18 @@
+from playwright.sync_api import Page
 
 class CartPage:
 
-    def __init__(self, cartTab):
+    def __init__(self, page:Page):
         
-        self.cartpagebrowser = cartTab
-
+        self.page = page
+        self.cart_icon = self.page.locator(".shopping_cart_link")
+        self.checkout_btn = self.page.get_by_role("button", name="Checkout")
+    
+    
     def open_cart(self):
-        self.cartpagebrowser.locator(".shopping_cart_link").click()
+        self.cart_icon.click()
 
+    
     def proceed_to_checkout(self):
-        self.cartpagebrowser.get_by_role("button", name="Checkout").click()
+        self.checkout_btn.click()
         

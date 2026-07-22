@@ -1,10 +1,13 @@
+from playwright.sync_api import Page
 
-class OrderConfirmation:
+class OrderConfirmationPage:
 
-    def __init__(self, browserTab):
+    def __init__(self, page:Page):
 
-        self.browser = browserTab
-    
+        self.page = page
+        self.finish_btn = self.page.get_by_text("Finish")
+
+
     def finish_checkout(self):
 
-        self.browser.get_by_text("Finish").click()
+        self.finish_btn.click()

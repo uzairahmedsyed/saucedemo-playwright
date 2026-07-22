@@ -1,0 +1,21 @@
+{
+    "valid_credentials":{
+        "username":"standard_user",
+        "password":"secret_sauce"
+    },
+    "invalid_credentials":[
+        {"username":"ABC","password":"XYZ"},
+        { "username": "abc", "password": "secret_sauce" },
+        { "username": "standard_user", "password": "xyz" },
+        { "username": "", "password": "" }
+
+    ],
+
+    "checkout":{
+        "first_name":"Buyer",
+        "last_name":"Buyer",
+        "zip":"90248"
+    },
+
+    "product_ids":["sauce-labs-backpack", "sauce-labs-bike-light"]
+}
