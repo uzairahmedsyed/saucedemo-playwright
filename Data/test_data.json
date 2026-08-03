@@ -19,5 +19,13 @@
 
     "product_ids":["sauce-labs-backpack", "sauce-labs-bike-light","sauce-labs-bolt-t-shirt"],
 
-    "product_names":["Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt"]
+    "product_names":["Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt"],
+
+
+    "checkout_validation": [
+        {"first_name": "", "last_name": "Buyer", "zip": "90248", "error": "Error: First Name is required"},
+        {"first_name": "Buyer", "last_name": "", "zip": "90248", "error": "Error: Last Name is required"},
+        {"first_name": "Buyer", "last_name": "Buyer", "zip": "", "error": "Error: Postal Code is required"}
+    ]
+
 }
