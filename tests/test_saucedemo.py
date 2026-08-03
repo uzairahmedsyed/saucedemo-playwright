@@ -24,27 +24,30 @@ def test_invalid_login(page, username , password):
 
 def test_valid_login(valid_credentials):
     expect(valid_credentials).to_have_url("https://www.saucedemo.com/inventory.html")
-
+    expect(valid_credentials.locator("[data-test='title']")).to_have_text("Products")
 
 def test_add_product_to_cart( product_fixture):
-    expect(product_fixture.locator(".shopping_cart_badge")).to_have_text("2")
-
+    # expect(product_fixture.locator(".shopping_cart_badge")).to_have_text("2")
+    expect(product_fixture.locator(".shopping_cart_badge")).to_have_text(str(len(test_data["product_ids"])))
 
 def test_carticon_to_checkout(open_cart_fixture):
     expect(open_cart_fixture).to_have_url("https://www.saucedemo.com/cart.html")
+    expect(open_cart_fixture.locator("[data-test='title']")).to_have_text("Your Cart")
+    expect(open_cart_fixture.locator("[data-test='inventory-item-name']")).to_have_text(test_data["product_names"]) 
+
 
 
 def test_checkout(proceed_to_checkout_fixture):
     expect(proceed_to_checkout_fixture).to_have_url("https://www.saucedemo.com/checkout-step-one.html")  
     checkout_obj = CheckoutPage(proceed_to_checkout_fixture)
     checkout_obj.checkout_proceed(test_data["checkout"]["first_name"],test_data["checkout"]["last_name"],test_data["checkout"]["zip"])
+    expect(proceed_to_checkout_fixture).to_have_url("https://www.saucedemo.com/checkout-step-two.html")
+    expect(proceed_to_checkout_fixture.locator("[data-test='inventory-item-name']")).to_have_text(test_data["product_names"])
 
-
-def test_order_confirmation(proceed_to_checkout_fixture):
-    checkout_obj = CheckoutPage(proceed_to_checkout_fixture)
-    checkout_obj.checkout_proceed(test_data["checkout"]["first_name"],test_data["checkout"]["last_name"],test_data["checkout"]["zip"])
-    confirmation_obj = OrderConfirmationPage(proceed_to_checkout_fixture)
+    
+def test_order_confirmation(checkout_filled_fixture):
+    confirmation_obj = OrderConfirmationPage(checkout_filled_fixture)
     confirmation_obj.finish_checkout()
-    expect(proceed_to_checkout_fixture.get_by_text("Thank you for your order!")).to_be_visible()
+    expect(checkout_filled_fixture.get_by_text("Thank you for your order!")).to_be_visible()
 
 

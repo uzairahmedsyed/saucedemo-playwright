@@ -4,6 +4,7 @@ import pytest
 from Pages.LoginPage import LoginPage
 from Pages.ProductPage import ProductPage
 from Pages.CartPage import CartPage
+from Pages.CheckoutPage import CheckoutPage
 sys.path.insert(0, os.path.dirname(__file__))
 import json
 
@@ -18,13 +19,16 @@ def valid_credentials(page):
 
     return page
 
+
 @pytest.fixture
 def product_fixture(valid_credentials):
     prod_obj = ProductPage(valid_credentials)
-    prod_obj.add_inventory(test_data["product_ids"][0])
-    prod_obj.add_inventory(test_data["product_ids"][1])                           
+
+    for product_id in test_data["product_ids"]:
+        prod_obj.add_inventory(product_id)                     
 
     return valid_credentials
+
 
 @pytest.fixture
 def open_cart_fixture(product_fixture):
@@ -33,9 +37,17 @@ def open_cart_fixture(product_fixture):
 
     return product_fixture
 
+
 @pytest.fixture
 def proceed_to_checkout_fixture(open_cart_fixture):
     proceed_to_checkout_obj = CartPage(open_cart_fixture)
     proceed_to_checkout_obj.proceed_to_checkout()
 
     return open_cart_fixture
+
+
+@pytest.fixture
+def checkout_filled_fixture(proceed_to_checkout_fixture):
+    checkout_obj = CheckoutPage(proceed_to_checkout_fixture)
+    checkout_obj.checkout_proceed(test_data["checkout"]["first_name"], test_data["checkout"]["last_name"], test_data["checkout"]["zip"])
+    return proceed_to_checkout_fixture

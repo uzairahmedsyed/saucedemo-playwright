@@ -17,5 +17,7 @@
         "zip":"90248"
     },
 
-    "product_ids":["sauce-labs-backpack", "sauce-labs-bike-light"]
+    "product_ids":["sauce-labs-backpack", "sauce-labs-bike-light","sauce-labs-bolt-t-shirt"],
+
+    "product_names":["Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt"]
 }
