@@ -6,7 +6,12 @@ Automated end-to-end test suite for [saucedemo.com](https://www.saucedemo.com) b
 
 | Test | Description |
 |------|-------------|
-| `test_invalid_login` | Invalid credentials (parametrized) — error message verify |
+| `test_invalid_login` | Invalid credentials and missing username/password — exact error message and login page verify |
+| `test_locked_user` | Locked account — exact error message and denied login verify |
+| `test_logout` | Logout — return to login page verify |
+| `test_product_sorting` | Name A–Z/Z–A and price low–high/high–low verify |
+| `test_remove_products` | Remove products from inventory and cart — badge updates and empty cart verify |
+| `test_checkout_totals` | Product prices, subtotal, rounded 8% tax and final total verify |
 | `test_valid_login` | Valid login — inventory page verify |
 | `test_add_product_to_cart` | Add products to cart — badge count verify |
 | `test_carticon_to_checkout` | Open cart — cart URL and item names verify |
@@ -17,6 +22,8 @@ Automated end-to-end test suite for [saucedemo.com](https://www.saucedemo.com) b
 There is also `tests/test_api.py`, a standalone script that calls the [reqres.in](https://reqres.in) API using a key from `.env`.
 
 ## Project Structure
+
+The UI suite contains 22 parametrized test cases. Expected login errors, product prices and the tax rate are defined in `Data/test_data.json`.
 
 ```
 saucedemo-playwright/
