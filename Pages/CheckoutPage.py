@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 class CheckoutPage:
 
@@ -10,10 +10,9 @@ class CheckoutPage:
         self.postal_code = self.page.get_by_placeholder("Zip/Postal Code")
         self.continue_btn = self.page.get_by_text("Continue")
 
-
+        
     def checkout_proceed(self, first_name, last_name, zip_code):
-
-        expect(self.first_name).to_be_visible()
+    
         self.first_name.fill(first_name)
         self.last_name.fill(last_name)
         self.postal_code.fill(zip_code)

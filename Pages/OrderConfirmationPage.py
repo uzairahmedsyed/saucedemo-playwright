@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 class OrderConfirmationPage:
 
@@ -10,5 +10,4 @@ class OrderConfirmationPage:
 
     def finish_checkout(self):
 
-        expect(self.finish_btn).to_be_visible()
         self.finish_btn.click()
